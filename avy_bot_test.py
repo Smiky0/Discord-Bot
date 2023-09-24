@@ -19,6 +19,7 @@ def show_food():
 restricted_words = ["PUT A LIST OF BAD WORDS HERE"]
 
 
+#exclude this func if you dont want to know those user names..
 # write bad_words user name in file
 def write_on_file(user, word):
     try:
@@ -48,7 +49,7 @@ async def on_message(message):
 
 # interaction commands work under this if statement
 # posts message anonymously
-    if (message.channel.id == 924601498049052672):
+    if (message.channel.id == "CHANNEL ID"):
         await message.channel.purge(limit=1)
         color = 0xbdbdbd
         # check for bad words
@@ -65,7 +66,7 @@ async def on_message(message):
             color = 0x0ebcb7
             # user value changes to current
             user = message.author
-        # if message content starts with gif then it will send as msg
+        # if message content is a gif this will post it as normal msg instead of embeded
         if (message.content.startswith("https://tenor.com")):
             await message.channel.send(message.content)
         # else embed them
@@ -76,7 +77,7 @@ async def on_message(message):
                                              color=color)
                 await message.channel.send(embed=embedMessage)
 
-    # DM message reply
+    # DM message reply (in case someone dms ur bot)
     elif not message.guild:
         # sends to the user
         try:
@@ -106,7 +107,7 @@ async def on_message(message):
     # reply to happy_new_year_msg
         if message.content.startswith("happy new year"):
             await message.channel.send(
-                "HAPPY NEW YEAR <:hug:918789977595314176> :star2: !!")
+                "HAPPY NEW YEAR :star2: !!")
 
     # reply to avy jokes
         if message.content.startswith("avy joke"):
@@ -128,18 +129,19 @@ async def on_message(message):
                 await message.channel.send(
                     response_bored.json().get("activity"))
 
-
+"""
+#no need to include lol
 # reply to avy is boring message
         boring_lst = ["avy is boring", "avy you are boring", "avy boring"]
         for msg in boring_lst:
             if message.content.startswith(msg):
                 await message.channel.send("Heh? Then have some water..  ^_-")
                 await message.channel.send(file=discord.File('give-water.gif'))
-
+"""
     # replies to shush avy
         if message.content.startswith("shush avy"):
             await message.channel.send(
-                "Sorry Senpai <:aniblush:924931332402974720>")
+                "Sorry Senpai")
 
     # sends gif to rickroll message
         if message.content.startswith("avy rickroll"):
@@ -159,15 +161,15 @@ async def on_message(message):
 
     # adds emoji to message
         if ("sadge") in message.content:
-            await message.add_reaction("<:distortedcry:918797628630773760>")
+            await message.add_reaction("<'EMOJI'>")
     # for laughing
         laugh_lst = ['gagi', 'haha', 'gago', 'hehe']
         for laugh in laugh_lst:
             if (laugh) in message.content:
-                await message.add_reaction("<:lmao:929793144000761918>")
+                await message.add_reaction("<'EMOJI'>")
     # for noice
         if ("noice") in message.content:
-            await message.add_reaction("<:noice:930017860749770782>")
+            await message.add_reaction("<'EMOJI'>")
 
     # help embed message
         if message.content.startswith("avy help"):
